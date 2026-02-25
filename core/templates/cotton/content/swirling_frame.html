@@ -1,0 +1,13 @@
+{% load static %}
+
+<div class="absolute flex w-[60%] flex-col items-center justify-center bg-slate-950 text-white">
+    <div class="card-wrapper h-[800px] w-[1000px]">
+        <div class="card-content flex items-center justify-center text-xs">
+        <img
+            src="{% static 'quality_kitty_pics/{{ file }}' %}"
+            alt=""
+            class="relative h-160 w-auto z-12"
+        />
+        </div>
+    </div>
+</div>

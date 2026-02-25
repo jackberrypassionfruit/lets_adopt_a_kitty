@@ -1,0 +1,49 @@
+{% load static %}
+{% comment %} {% load livereload_tags %} {% endcomment %}
+<!DOCTYPE html>
+<html lang="en" data-theme="light" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>California the Cat</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}"> <!-- ?v={{ now|date:'U' }}"> -->
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- <link href="{% static 'css/output.css' %}" rel="stylesheet" /> -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@4.0.0-alpha7/dist/htmx.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    {% block scripts %}
+
+    {% endblock %}
+</head>
+
+<body 
+    hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' 
+    hx-ext="response-targets"
+    class="min-h-screen bg-slate-100"
+    x-data="{
+        animate: $persist(true)
+    }"
+>
+
+    {% include 'base/navbar.html' %}
+    
+    <main >
+        {% block content %}
+        {% endblock %}
+    </main>
+    
+    {% include 'base/footer.html' %}
+
+</body>
+
+</html>

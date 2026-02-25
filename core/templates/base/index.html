@@ -1,0 +1,96 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<p class="pt-10 text-7xl text-center">My name is California!</p>
+<div class="flex md:flex-row flex-col justify-around m-16">
+  <div class="relative">
+    <div class="absolute md:h-150 h-80 w-[90%] z-00 border-4 bg-gradient-to-b from-yellow-100 to-yellow-300"></div>
+    <img
+      src="{% static 'quality_kitty_pics/PXL_20260219_051244894_preview_rev_1.png' %}"
+      alt=""
+      class="relative w-140 h-auto z-30 mt-25 pb-10 mr-24"
+    />
+    <c-content.blob styles="top-10 right-20 bg-purple-400" />
+    <c-content.blob styles="top-20 left-40  bg-yellow-400 animation-delay-2000" />
+    <c-content.blob styles="top-60 left-00  bg-pink-400   animation-delay-4000" />
+    <c-content.blob styles="top-80 right-40 bg-green-400  animation-delay-4000" />
+  </div>
+  <div class="flex flex-col items-center">
+    <p class="text-center text-4xl font-bold py-20 w-2/3">I'm a playful, friendly kitty who's looking for a home</p>
+  </div>
+  <div class="h-fit border-4 bg-gradient-to-l shadow-2xl shadow-purple-600/30">
+    <c-content.playing-gif />
+  </div>
+</div>
+
+<div class="flex md:flex-row flex-col justify-around m-16 p-4">
+  <c-content.kit-pic 
+    pic="I Love to Show up out of Nowhere/PXL_20260126_064329989.jpg" 
+    text="I Like to Explore"
+    w="150" />
+  <c-content.kit-pic 
+    pic="I Love to Show up out of Nowhere/PXL_20260125_202626916.jpg" 
+    text="I Appear When you Least Expect It"
+    w="130" rot="2" />
+  <c-content.kit-pic 
+    pic="I Love my Fwends/edited_PXL_20260220_230759219.jpg" 
+    text="I am Always the Center of Attention"
+    w="110" rot="358" />
+</div>
+  
+<div class="flex md:flex-row flex-col justify-around m-16 p-4 animate-rock-a-by " :class="animate ? '' : 'paused'">
+  <c-content.kit-pic 
+    pic="I Love to Sleep/PXL_20260127_213412079.jpg" 
+    text="But Playing Makes me Sleepy"
+    w="180" />
+  <c-content.kit-pic 
+    pic="I Love to Sleep/PXL_20260203_205902633.jpg" 
+    text="And Everywhere is my Bed"
+    w="210" />
+</div>
+
+<div class="flex md:flex-row flex-col justify-around m-16 p-4">
+  <c-content.kit-pic 
+    pic="I Love my Fwends/WhatsApp Image 2026-02-22 at 09.51.35.jpeg" 
+    text="I'm a Simple Girl, I like Scritches"
+    w="140" />
+  <c-content.kit-pic 
+    pic="I Love to Explore/PXL_20260222_182437883.MP.jpg" 
+    text="And Climbing my Tower"
+    w="130" />
+</div>
+
+<div class="flex md:flex-row flex-col justify-around m-16 p-4">
+  <c-content.kit-pic 
+    pic="Take me on Vacation/PXL_20260219_051027972.jpg" 
+    text="But I'm Ready to Go on my Next Adventure"
+    w="150" />
+  <c-content.kit-pic 
+    pic="Take me on Vacation/PXL_20260219_051046737.PORTRAIT.jpg" 
+    text="And I heard you have the Good Snacks:)"
+    w="200" />
+</div>
+
+<div class="flex flex-col items-center m-8">
+  <p class="text-center italic text-5xl m-2">Would YOU would  like to be California's new home?</p>
+  <a class="btn btn-secondary h-20 text-3xl rounded-2xl m-8">Say hi to her Roommates</a>
+</div>
+<div class="fixed md:sticky md:top-0 bottom-0 z-20 flex justify-end">
+  <a 
+    class="flex flex-col items-end border-2 rounded-xl p-2 m-4 bg-gradient-to-b from-blue-100 to-blue-300"
+    @click="animate=!animate"
+  >
+    <p class="font-bold text-2xl">Animations</p>
+    <i 
+      class="fa-solid fa-toggle-on text-5xl"
+      x-show="animate"
+    ></i>
+    <i 
+      class="fa-solid fa-toggle-off text-5xl"
+      x-show="!animate"
+    ></i>
+  </a>
+</div>
+{% endblock %}
