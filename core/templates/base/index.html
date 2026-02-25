@@ -73,9 +73,24 @@
     w="200" />
 </div>
 
-<div class="flex flex-col items-center m-8">
+<div 
+  class="flex flex-col items-center m-8"
+  x-data="{email_copied: false}"
+>
   <p class="text-center italic text-5xl m-2">Would YOU would  like to be California's new home?</p>
-  <a class="btn btn-secondary h-20 text-3xl rounded-2xl m-8">Say hi to her Roommates</a>
+  <a 
+    class="btn btn-secondary h-20 text-3xl rounded-2xl m-8"
+    @click="
+        $clipboard(my_email); 
+        email_copied=!email_copied;
+    "
+  >Say hi to her Roommates</a>
+  <div class="flex flex-col items-center font-bold" x-show="email_copied">
+    <span x-text="my_email" class="text-4xl italic"></span>
+    <p class="text-lg">
+        has been copied to your clipboard!
+    </p>
+</div>
 </div>
 <div class="fixed md:sticky md:top-0 bottom-0 z-20 flex justify-end">
   <a 

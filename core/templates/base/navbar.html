@@ -1,48 +1,62 @@
-{% comment %} <header> {% endcomment %}
-    <div class="bg-blue-300 px-9 py-4 flex justify-around items-center">
-        <div class="flex items-center">
-            <c-header.social-icon url="https://straycatalliance.org/" fa_name="fa-solid fa-cat" />
-            <a
-                href="https://straycatalliance.org/"
-                class="cursor-pointer bg-blue-100 mx-2 p-2 border-2 rounded-2xl flex flex-col h-fit"
-                target="_blank"
-            >
-                <p class="italic text-3xl text-center mx-4">Stray Cat Alliance</p>
-                <p class="text-xs text-center">Building a No Kill Nation, One Stray at a Time</p>
-            </a>
+<div class="bg-blue-300 px-9 py-4 flex justify-around items-center">
+    <div class="flex items-center">
+        <c-header.social-icon url="https://straycatalliance.org/" fa_name="fa-solid fa-cat" />
+        <a
+            href="https://straycatalliance.org/"
+            class="cursor-pointer bg-blue-100 mx-2 p-2 border-2 rounded-2xl flex flex-col h-fit"
+            target="_blank"
+        >
+            <p class="italic text-3xl text-center mx-4">Stray Cat Alliance</p>
+            <p class="text-xs text-center">Building a No Kill Nation, One Stray at a Time</p>
+        </a>
+    </div>
+    <div class="flex flex-row items-center">
+        <div class="flex flex-col md:flex-row">
+            <c-header.social-icon url="https://www.instagram.com/straycatalliance" fa_name="fa-brands fa-instagram" />
+            <c-header.social-icon url="https://www.facebook.com/StrayCatAlliance"  fa_name="fa-brands fa-facebook" />
+            <c-header.social-icon url="https://www.tiktok.com/@straycatalliance"   fa_name="fa-brands fa-tiktok" />
         </div>
-        <div class="flex flex-row items-center">
-            <div class="flex flex-col md:flex-row">
-                <c-header.social-icon url="https://www.instagram.com/straycatalliance" fa_name="fa-brands fa-instagram" />
-                <c-header.social-icon url="https://www.facebook.com/StrayCatAlliance"  fa_name="fa-brands fa-facebook" />
-                <c-header.social-icon url="https://www.tiktok.com/@straycatalliance"   fa_name="fa-brands fa-tiktok" />
-            </div>
-            <div class="flex flex-col md:flex-row">
-                <c-header.social-icon url="https://www.youtube.com/user/TheStraycatalliance"   fa_name="fa-brands fa-youtube" />
-                <c-header.social-icon url="https://www.linkedin.com/company/straycatalliance/"   fa_name="fa-brands fa-linkedin" />
-            </div>
+        <div class="flex flex-col md:flex-row">
+            <c-header.social-icon url="https://www.youtube.com/user/TheStraycatalliance"   fa_name="fa-brands fa-youtube" />
+            <c-header.social-icon url="https://www.linkedin.com/company/straycatalliance/"   fa_name="fa-brands fa-linkedin" />
         </div>
     </div>
-    <header class="sticky top-0 z-40">
-        <nav class="bg-blue-100 border-b-2 w-[100%] px-9 flex justify-between items-center">
-            <div class="flex items-center mx-2">
-                <i class="fa-regular fa-envelope text-5xl mr-3"></i>
-                <p class="font-bold text-2xl">pashayanjack@gmail.com</p>
+</div>
+<header class="sticky top-0 z-40">
+    <nav class="bg-blue-100 border-b-2 w-[100%] px-9 flex justify-between items-center">
+        <div class="flex items-center mx-2">
+            <c-header.social-icon url="https://github.com/jackberrypassionfruit" fa_name="fa-brands fa-github" />
+            <p class="font-bold text-2xl" x-text="my_email"></p>
+        </div>
+    
+    
+        {% comment %} {% if user.is_authenticated %}
+        <!-- User is authenticated: Show Logout button -->
+        <c-base.navbar-item slug="account_logout">Logout</c-base.navbar-item>
+        {% else %}
+        <!-- User is not authenticated: Show Login and Register links -->
+        <c-base.navbar-item slug="account_login">Login</c-base.navbar-item>
+        <c-base.navbar-item slug="account_signup">Register</c-base.navbar-item>
+        {% endif %}
+    
+        <c-base.navbar-item slug="index">Printer Display</c-base.navbar-item> {% endcomment %}
+    
+        <div x-data="{email_copied: false}">
+            <div class="flex items-center">
+                <div class="flex flex-col items-center font-bold" x-show="email_copied">
+                    <span x-text="my_email" class="text-4xl italic"></span>
+                    <p class="text-lg">
+                        has been copied to your clipboard!
+                    </p>
+                </div>
+                <a
+                    class="btn btn-secondary h-15 text-2xl rounded-2xl m-4"
+                    @click="
+                        $clipboard(my_email); 
+                        email_copied=!email_copied;
+                    "
+                >Say Hi to my Roommates</a>
             </div>
-        
-        
-            {% comment %} {% if user.is_authenticated %}
-            <!-- User is authenticated: Show Logout button -->
-            <c-base.navbar-item slug="account_logout">Logout</c-base.navbar-item>
-            {% else %}
-            <!-- User is not authenticated: Show Login and Register links -->
-            <c-base.navbar-item slug="account_login">Login</c-base.navbar-item>
-            <c-base.navbar-item slug="account_signup">Register</c-base.navbar-item>
-            {% endif %}
-        
-            <c-base.navbar-item slug="index">Printer Display</c-base.navbar-item> {% endcomment %}
-        
-            <a class="btn btn-secondary h-15 text-2xl rounded-2xl m-2">Say Hi to my Roommates</a>
-        </nav>
-    </header>
-{% comment %} </header> {% endcomment %}
+        </div>
+    </nav>
+</header>
