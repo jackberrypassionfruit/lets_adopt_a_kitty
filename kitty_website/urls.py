@@ -24,6 +24,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("core.urls")),
     path("accounts/", include("allauth.urls")),
+    path("prometheus/", include("django_prometheus.urls")),
 ]
 
 # Only serves media files in development (DEBUG=True)

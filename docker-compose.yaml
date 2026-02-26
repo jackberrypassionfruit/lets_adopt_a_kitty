@@ -1,10 +1,17 @@
+networks:
+  monitoring:
+    external: true
+    name: monitoring
+
 services:
-  kitty_website:
+  kitty-website:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: kitty_website
+    container_name: kitty-website
     restart: unless-stopped
+    networks:
+      - monitoring
     volumes:
       - .:/app
     ports:
@@ -15,4 +22,3 @@ services:
               --timeout 60 
               kitty_website.wsgi:application
     # python manage.py runserver 0.0.0.0:8000
-

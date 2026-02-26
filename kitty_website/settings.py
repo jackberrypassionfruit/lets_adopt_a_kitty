@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,10 +27,14 @@ SECRET_KEY = "django-insecure-7lhhu^qxc1b5pg@!xorpe%+&98ptl&!t)f2i(jn3_z_-%n*&s-
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "localhost",
-    "127.0.0.1",
-    "letsadopt-me.iamnotgerman.de",
-    "letsadopt.wahoo-broadnose.ts.net"
+    # "localhost",
+    # "127.0.0.1",
+    # "192.168.2.108",
+    # "letsadopt-me.iamnotgerman.de",
+    # "letsadopt.wahoo-broadnose.ts.net",
+    # "kitty_website",
+    # "kitty_website:8000",
+    "*"
 ]
 
 
@@ -48,6 +53,7 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "core",
+    "django_prometheus",
 ]
 
 MIDDLEWARE = [
@@ -62,6 +68,12 @@ MIDDLEWARE = [
     "allauth.account.middleware.AccountMiddleware",
     # "livereload.middleware.LiveReloadScript",
 ]
+
+MIDDLEWARE = (
+    ["django_prometheus.middleware.PrometheusBeforeMiddleware"]
+    + MIDDLEWARE
+    + ["django_prometheus.middleware.PrometheusAfterMiddleware"]
+)
 
 ROOT_URLCONF = "kitty_website.urls"
 
@@ -151,3 +163,29 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+
+# LOGGING = {
+#     'version': 1,  # Specifies the logging configuration schema version
+#     'disable_existing_loggers': False,  # Keep default Django loggers active
+#     'formatters': {
+#         'verbose': {
+#             'format': '{levelname} {asctime} {module} {message}',
+#             'style': '{',  # Use `{}` to format log messages
+#         },
+#     },
+#     'handlers': {
+#         'file': {  # Write logs to a file
+#             'level': 'INFO',
+#             'class': 'logging.FileHandler',
+#             'filename': os.path.join(BASE_DIR, 'app.log'),  # Log file path
+#             'formatter': 'verbose',  # Use the verbose format
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['file'],
+#             'level': 'INFO',  # Log everything INFO and above
+#             'propagate': True,  # Pass log messages to parent loggers
+#         },
+#     },
+# }

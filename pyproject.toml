@@ -12,7 +12,7 @@ dependencies = [
     "django-extensions>=4.1",
     "django-htmx>=1.27.0",
     "django-livereload-server>=0.5.1",
+    "django-prometheus>=2.4.0",
     "gunicorn>=25.1.0",
     "whitenoise>=6.11.0",
-
 ]

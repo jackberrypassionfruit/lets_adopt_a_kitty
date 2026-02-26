@@ -6,8 +6,10 @@ django-environ==0.13.0
 django-extensions==4.1
 django-htmx==1.27.0
 django-livereload-server==0.5.1
+django-prometheus==2.4.0
 gunicorn==25.1.0
 packaging==26.0
+prometheus-client==0.24.1
 sqlparse==0.5.5
 tornado==6.5.4
 whitenoise==6.11.0
