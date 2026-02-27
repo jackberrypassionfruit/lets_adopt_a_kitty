@@ -38,10 +38,10 @@ ALLOWED_HOSTS = [
     "*"
 ]
 
-# CSRF_TRUSTED_ORIGINS = [
-#     "https://letsadopt-me.iamnotgerman.de",
-#     "https://letsadopt.wahoo-broadnose.ts.net",
-# ]
+CSRF_TRUSTED_ORIGINS = [
+    "https://letsadopt-me.iamnotgerman.de",
+    "https://letsadopt.wahoo-broadnose.ts.net",
+]
 
 # Application definition
 
