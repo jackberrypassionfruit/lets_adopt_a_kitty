@@ -19,12 +19,14 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from .views import metrics_view
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("core.urls")),
     path("accounts/", include("allauth.urls")),
     path("prometheus/", include("django_prometheus.urls")),
+    # path('metrics/', metrics_view, name='metrics'),
 ]
 
 # Only serves media files in development (DEBUG=True)

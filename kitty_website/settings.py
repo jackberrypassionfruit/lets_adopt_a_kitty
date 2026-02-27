@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/6.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
+from .custom_logger import PrometheusLogHandler
 
 from pathlib import Path
 import os
@@ -37,10 +38,10 @@ ALLOWED_HOSTS = [
     "*"
 ]
 
-CSRF_TRUSTED_ORIGINS = [
-    "letsadopt-me.iamnotgerman.de",
-    "letsadopt.wahoo-broadnose.ts.net",
-]
+# CSRF_TRUSTED_ORIGINS = [
+#     "https://letsadopt-me.iamnotgerman.de",
+#     "https://letsadopt.wahoo-broadnose.ts.net",
+# ]
 
 # Application definition
 
@@ -168,28 +169,32 @@ STORAGES = {
     },
 }
 
-# LOGGING = {
-#     'version': 1,  # Specifies the logging configuration schema version
-#     'disable_existing_loggers': False,  # Keep default Django loggers active
-#     'formatters': {
-#         'verbose': {
-#             'format': '{levelname} {asctime} {module} {message}',
-#             'style': '{',  # Use `{}` to format log messages
-#         },
-#     },
-#     'handlers': {
-#         'file': {  # Write logs to a file
-#             'level': 'INFO',
-#             'class': 'logging.FileHandler',
-#             'filename': os.path.join(BASE_DIR, 'app.log'),  # Log file path
-#             'formatter': 'verbose',  # Use the verbose format
-#         },
-#     },
-#     'loggers': {
-#         'django': {
-#             'handlers': ['file'],
-#             'level': 'INFO',  # Log everything INFO and above
-#             'propagate': True,  # Pass log messages to parent loggers
-#         },
-#     },
-# }
+LOGGING = {
+    'version': 1,  # Specifies the logging configuration schema version
+    'disable_existing_loggers': False,  # Keep default Django loggers active
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',  # Use `{}` to format log messages
+        },
+    },
+    'handlers': {
+        'file': {  # Write logs to a file
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'app.log'),  # Log file path
+            'formatter': 'verbose',  # Use the verbose format
+        },
+        'prometheus': {  # Send logs to Prometheus (custom handler)
+            'level': 'INFO',
+            'class': 'kitty_website.custom_logger.PrometheusLogHandler',  # Our custom handler
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file', 'prometheus'],
+            'level': 'INFO',  # Log everything INFO and above
+            'propagate': True,  # Pass log messages to parent loggers
+        },
+    },
+}
