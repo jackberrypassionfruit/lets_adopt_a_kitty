@@ -12,6 +12,8 @@ services:
     restart: unless-stopped
     networks:
       - monitoring
+    environment:
+      - PROMETHEUS_MULTIPROC_DIR=/tmp/prometheus_multiproc
     # volumes:
     #   # this bind mount is helpful for hot swapping code while developing
     #   # but removing it in prod helps with permission isseus
