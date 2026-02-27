@@ -56,7 +56,9 @@ COPY --chown=appuser:appuser . .
 
 # Create the staticfiles directory as root and give appuser ownership
 # before switching to that user
-RUN mkdir -p /app/staticfiles && chown appuser:appuser /app/staticfiles
+RUN mkdir -p /app/staticfiles && chown appuser:appuser /app/staticfiles \
+    && mkdir -p /tmp/prometheus_multiproc && chown appuser:appuser /tmp/prometheus_multiproc
+    # && touch /app/app.log && chmod 666 /app/app.log
 
 # Switch to non-root user for everything from here on
 USER appuser

@@ -1,6 +1,5 @@
 import logging, json
 from prometheus_client import Counter
-from .views import get_client_ip
 
 # Define Prometheus counters for different log levels
 log_counters = {
@@ -11,12 +10,6 @@ log_counters = {
 
 class PrometheusLogHandler(logging.Handler):  # Custom log handler
     def emit(self, record):
-        # Skip if this log entry is from the Prometheus scraper
-        if hasattr(record, 'request') and (
-            '/prometheus' in record.getMessage() or 
-            '/static' in record.getMessage()
-        ):
-            return
         log_level = record.levelname  # Get the log level (INFO, WARNING, ERROR)
         if log_level in log_counters:  # Check if we have a counter for this level
             log_counters[log_level].inc()  # Increment the counter

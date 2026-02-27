@@ -193,7 +193,7 @@ LOGGING = {
     },
     'loggers': {
         'django': {
-            'handlers': ['file', 'prometheus'],
+            'handlers': ['prometheus'], # 'file'
             'level': 'INFO',  # Log everything INFO and above
             'propagate': True,  # Pass log messages to parent loggers
         },
