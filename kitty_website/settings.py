@@ -31,6 +31,7 @@ ALLOWED_HOSTS = [
     # "localhost",
     # "127.0.0.1",
     # "192.168.2.108",
+    # "*.iamnotgerman.de",
     # "letsadopt-me.iamnotgerman.de",
     # "letsadopt.wahoo-broadnose.ts.net",
     # "kitty_website",

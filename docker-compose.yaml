@@ -12,8 +12,10 @@ services:
     restart: unless-stopped
     networks:
       - monitoring
-    volumes:
-      - .:/app
+    # volumes:
+    #   # this bind mount is helpful for hot swapping code while developing
+    #   # but removing it in prod helps with permission isseus
+    #   - .:/app  
     ports:
       - "8006:8000"
     command: >
