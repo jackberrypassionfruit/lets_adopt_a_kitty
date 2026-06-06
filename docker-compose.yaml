@@ -5,23 +5,25 @@ networks:
 
 services:
   kitty-website:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: forgejo.iamnotgerman.de/root/lets_adopt_a_kitty:latest
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
     container_name: kitty-website
     restart: unless-stopped
     networks:
       - monitoring
     environment:
+      # this created a shared loation for the multiple gunicorn worker processes to share state
+      # this makes things like Counter not be indeterminate when querying state
       - PROMETHEUS_MULTIPROC_DIR=/tmp/prometheus_multiproc
     # volumes:
-    #   # this bind mount is helpful for hot swapping code while developing
-    #   # but removing it in prod helps with permission isseus
+    #   # I forgot why this was recommended, or why it was removed honestly
     #   - .:/app  
     ports:
       - "8006:8000"
     command: >
-      gunicorn  --bind 0.0.0.0:8000 
+      rm -rf /tmp/prometheus_multiproc/* && gunicorn  --bind 0.0.0.0:8000 
               --workers 3 
               --timeout 60 
               kitty_website.wsgi:application
